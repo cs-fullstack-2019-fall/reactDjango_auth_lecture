@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import EachPrompt from "./EachPrompt";
 
 class Allagram extends Component{
+
     constructor(props) {
         super(props);
         this.state={
@@ -21,7 +21,7 @@ class Allagram extends Component{
                 let tempResponse = response.map(
                     (eachElement)=>{
                         return(
-                            <EachPrompt editFunction={this.props.editFunction} key={eachElement.id} eachElement={eachElement} fetchAllData={this.fetchAllData}/>
+                            <h3 key={eachElement.id}>From {eachElement.description}</h3>
                         );
                     }
                 );

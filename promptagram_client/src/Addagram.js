@@ -14,7 +14,7 @@ class Addagram extends Component{
         let tempBody = {
             imageURL: document.getElementById("imageURL").value,
             description: document.getElementById("description").value,
-            foreignKeyUser: 1,
+            foreignKeyUser: this.props.user.userID,
         };
         fetch('/promptagram/',
             {
@@ -33,6 +33,7 @@ class Addagram extends Component{
     };
 
     render() {
+        console.log(this.props.user);
         if(this.state.isUserAdded)
         {
             return(<Redirect to='/' />)

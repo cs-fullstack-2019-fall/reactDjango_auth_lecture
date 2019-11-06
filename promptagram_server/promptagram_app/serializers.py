@@ -1,12 +1,11 @@
-from django.contrib.auth.models import User
-from .models import PromptagramModel
+from .models import PromptagramModel, UserModel
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['username']
+        model = UserModel
+        fields = '__all__'
 
 
 class PromptagramSerializer(serializers.ModelSerializer):

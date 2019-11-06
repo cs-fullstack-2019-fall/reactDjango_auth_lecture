@@ -5,24 +5,32 @@ class Editagram extends Component{
         super(props);
         this.state = {
             editMessage: "",
+            userObject: "",
         }
     }
 
 
     componentDidMount() {
-        document.getElementById("imageURL").value = this.props.editItemObject.imageURL;
-        document.getElementById("description").value = this.props.editItemObject.description;
+        fetch(`/promptagram/${this.props.match.params.gramID}/`)
+            .then(data=>data.json())
+            .then(resp=>{
+                console.log(resp);
+                this.setState({userObject: resp},()=>{
+                    document.getElementById("imageURL").value = resp.imageURL;
+                    document.getElementById("description").value = resp.description;
+                });
+            });
     }
 
     submitEdit=(e)=>{
         e.preventDefault();
         let tempBody = {
-            id: this.props.editItemObject.id,
+            id: this.props.match.params.gramID,
             imageURL: document.getElementById("imageURL").value,
             description: document.getElementById("description").value,
-            foreignKeyUser: this.props.editItemObject.foreignKeyUser,
+            foreignKeyUser: this.state.userObject.foreignKeyUser,
         };
-        fetch("/promptagram/" + this.props.editItemObject.id + "/", {
+        fetch("/promptagram/" + this.props.match.params.gramID + "/", {
             method: 'put',
             headers:{
                 'Accept': 'application/json',
