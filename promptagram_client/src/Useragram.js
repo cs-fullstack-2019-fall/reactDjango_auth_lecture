@@ -9,7 +9,6 @@ class Useragram extends Component{
         }
     }
 
-
     componentDidMount() {
         this.fetchAllData();
     }
