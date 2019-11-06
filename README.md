@@ -1,1 +1,1 @@
-# react_django_router
+# reactDjango_auth_lecture
